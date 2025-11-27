@@ -9,7 +9,7 @@ export default defineConfig({
                 main: 'index.html',
                 login: './src/auth/login.html',
                 feed: 'frontend/feed.html',
-                profile: 'frontend/profile.html',
+                profile: './src/profile/profile.html',
                 editProfile: 'frontend/edit-profile.html'
             }
         }

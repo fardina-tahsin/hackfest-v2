@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="./profile.css">
+</head>
+
+<body>
+    <div class="profile-container">
+        <!-- Header -->
+        <div class="profile-header">
+            <div class="avatar">
+                <img id="profile-avatar" src="" alt="Profile" />
+                <button id="change-avatar-btn" class="avatar-edit">✎</button>
+            </div>
+            <h2 id="profile-name">User Name</h2>
+            <p id="profile-email" class="email">user@example.com</p>
+        </div>
+
+        <!-- Profile Info Table -->
+        <table class="profile-table">
+            <tbody>
+                <tr>
+                    <td class="label-cell">Display Name</td>
+                    <td id="display-name" class="value-cell">—</td>
+                </tr>
+                <tr>
+                    <td class="label-cell">Email</td>
+                    <td id="table-email" class="value-cell">—</td>
+                </tr>
+                <tr>
+                    <td class="label-cell">Phone</td>
+                    <td id="phone" class="value-cell">—</td>
+                </tr>
+                <tr>
+                    <td class="label-cell">Bio</td>
+                    <td id="bio" class="value-cell">—</td>
+                </tr>
+                <tr>
+                    <td class="label-cell">Account Created</td>
+                    <td id="created-at" class="value-cell">—</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <button id="edit-profile-btn" class="btn btn-primary">
+            Edit Profile
+        </button>
+
+        <!-- Actions -->
+        <div class="actions">
+            <button id="logout-btn" class="btn btn-dark">
+                Logout
+            </button>
+        </div>
+    </div>
+
+    <!-- Edit Modal -->
+    <div id="edit-modal" class="modal hidden">
+        <div class="modal-content">
+            <h3>Edit Profile</h3>
+            <label class="label">Display Name</label>
+            <input id="edit-name" type="text" class="input" />
+            <label class="label">Email</label>
+            <input id="edit-email" type="email" class="input" />
+            <label class="label">Bio</label>
+            <textarea id="edit-bio" class="input textarea"></textarea>
+            <label class="label">Phone</label>
+            <input id="edit-phone" type="tel" class="input" />
+            <div class="modal-actions">
+                <button id="save-btn" class="btn btn-primary">Save</button>
+                <button id="cancel-btn" class="btn btn-light">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="./profile.js"></script>
+</body>
+
+</html>
