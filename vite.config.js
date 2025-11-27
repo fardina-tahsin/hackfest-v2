@@ -8,9 +8,8 @@ export default defineConfig({
             input: {
                 main: 'index.html',
                 login: './src/auth/login.html',
-                feed: 'frontend/feed.html',
-                profile: './src/profile/profile.html',
-                editProfile: 'frontend/edit-profile.html'
+                home: './src/home/home.html',
+                profile: './src/profile/profile.html'
             }
         }
     }

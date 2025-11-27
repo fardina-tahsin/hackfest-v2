@@ -16,3 +16,4 @@ export async function getUserProfile(uid) {
     const snap = await getDoc(doc(db, "users", uid));
     return snap.exists() ? snap.data() : null;
 }
+

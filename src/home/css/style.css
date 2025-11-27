@@ -10,7 +10,7 @@
 }
 
 html,body{height:100%;margin:0;background:linear-gradient(180deg,#071028 0%, #071821 100%); color:#fff}
-.container{max-width:920px;margin:0 auto;padding:18px;}
+.container{max-width:1100px;margin:0 auto;padding:18px;}
 header{display:flex;justify-content:space-between;align-items:center;gap:12px}
 .brand{display:flex;align-items:center;gap:12px}
 .logo{width:48px;height:48px;border-radius:10px;background:linear-gradient(90deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;font-weight:700}
@@ -45,7 +45,10 @@ footer{margin-top:20px;text-align:center;color:var(--muted);font-size:13px}
 
 /* responsive */
 @media(min-width:720px){
-  .hero-grid{grid-template-columns:1fr 420px}
+  .hero-grid{grid-template-columns:1fr 340px}
+}
+@media(min-width:1000px){
+  .hero-grid{grid-template-columns:1fr 380px}
 }
 
 /* animation */
