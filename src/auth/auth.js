@@ -1,5 +1,5 @@
 // @ts-ignore
-import { fireApp, analytics } from './firebase-config.js';
+import { fireApp, analytics } from '../../firebase-config.js';
 import {
     createUserWithEmailAndPassword,
     getAuth,

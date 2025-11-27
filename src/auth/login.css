@@ -1,0 +1,174 @@
+/* Reset box-sizing */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+/* Container */
+.login-container {
+    max-width: 420px;
+    margin: 40px auto;
+    padding: 24px;
+    border: 1px solid #e6dcdc;
+    border-radius: 14px;
+    box-shadow: 0 2px 10px #00000014;
+}
+
+/* Tabs */
+.tabs {
+    display: flex;
+    border-bottom: 1px solid #ccc;
+}
+
+.tab {
+    flex: 1;
+    padding: 10px;
+    text-align: center;
+    font-weight: 500;
+    background: none;
+    border: none;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+}
+
+.tab.active {
+    border-bottom: 2px solid #000;
+}
+
+/* Spacing for sections */
+.form-section {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+/* Input fields */
+.input {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 15px;
+    border: 1px solid #aaa;
+    border-radius: 6px;
+    outline: none;
+    transition: border 0.2s;
+    box-sizing: border-box;
+}
+
+.input:focus {
+    border-color: #333;
+}
+
+/* Buttons */
+.btn {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Variants */
+.btn-primary {
+    background: #000;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #222;
+}
+
+.btn-dark {
+    background: #444;
+    color: white;
+}
+
+.btn-dark:hover {
+    background: #333;
+}
+
+.btn-success {
+    background: #16a34a;
+    color: white;
+}
+
+.btn-success:hover {
+    background: #15803d;
+}
+
+.btn-google {
+    background: #dc2626;
+    color: white;
+}
+
+.btn-google:hover {
+    background: #b91c1c;
+}
+
+.btn-blue {
+    background: #2563eb;
+    color: white;
+}
+
+.btn-blue:hover {
+    background: #1d4ed8;
+}
+
+.btn-light {
+    background: #e5e7eb;
+    color: #333;
+}
+
+.btn-light:hover {
+    background: #d1d5db;
+}
+
+/* Layout */
+.divider {
+    text-align: center;
+    color: #777;
+    font-size: 14px;
+}
+
+/* Recovery box */
+.recovery-box {
+    margin-top: 16px;
+    padding: 16px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background: #f9f9f9;
+}
+
+.title {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* Row layout */
+.row {
+    display: flex;
+    gap: 10px;
+}
+
+/* OTP box */
+.otp-box {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Success / Error */
+.success-text {
+    color: #16a34a;
+    font-size: 14px;
+}
+
+.error-text {
+    color: #dc2626;
+    font-size: 14px;
+}
+
+/* Hidden */
+.hidden {
+    display: none;
+}

@@ -1,179 +1,124 @@
+import {
+    emailLogin,
+    googleLogin,
+    phoneLogin,
+    verifyPhoneOtp,
+    recoverPassword,
+} from "./auth.js";
+
+// DOM Elements
+const otpSection = document.getElementById("otp-section");
+const forgotPasswordSection = document.getElementById("forgot-password-section");
+const successMessageEl = document.getElementById("success-message");
+const errorMessageEl = document.getElementById("error-message");
+
 // ============================
 // EMAIL LOGIN
 // ============================
 document.getElementById("login-btn").onclick = async () => {
-  const email = document.getElementById("login-email").value;
-  const password = document.getElementById("login-password").value;
+    const email = document.getElementById("login-email").value;
+    const password = document.getElementById("login-password").value;
 
-  alert(`Login with email: ${email} | ${password}`);
-  // → Replace alert with API call
+    if (!email || !password) {
+        alert("Please enter email and password");
+        return;
+    }
+
+    const result = await emailLogin(email, password);
+    if (result.success) {
+        alert("Login successful!");
+        // Redirect to home or dashboard
+        window.location.href = "/";
+    } else {
+        alert(result.error || "Login failed");
+    }
 };
 
 // ============================
 // PHONE LOGIN + OTP
 // ============================
-const otpSection = document.getElementById("otp-section");
+document.getElementById("send-otp-btn").onclick = async () => {
+    const phone = document.getElementById("phone-login").value;
 
-// Fake OTP for demo
-let generatedOTP = null;
+    if (!phone.startsWith("+")) {
+        alert("Phone must be in international format (e.g., +880...)");
+        return;
+    }
 
-document.getElementById("send-otp-btn").onclick = () => {
-  const phone = document.getElementById("phone-login").value;
-
-  if (!phone.startsWith("+")) {
-    alert("Phone must be in international format (e.g., +880...)");
-    return;
-  }
-
-  // Generate a random OTP for demo
-  generatedOTP = Math.floor(100000 + Math.random() * 900000).toString();
-  console.log("OTP:", generatedOTP); // In real use, sent via server/SMS
-
-  otpSection.classList.remove("hidden");
-  alert("OTP sent!");
+    const result = await phoneLogin(phone, "recaptcha-container");
+    if (result.success) {
+        otpSection.classList.remove("hidden");
+        alert(result.message || "OTP sent!");
+    } else {
+        alert(result.error || "Failed to send OTP");
+    }
 };
 
-document.getElementById("verify-otp-btn").onclick = () => {
-  const otp = document.getElementById("otp-input").value;
+document.getElementById("verify-otp-btn").onclick = async () => {
+    const otp = document.getElementById("otp-input").value;
 
-  if (otp === generatedOTP) {
-    alert("Phone login success!");
-  } else {
-    alert("Invalid OTP");
-  }
+    if (!otp) {
+        alert("Please enter the OTP");
+        return;
+    }
+
+    const result = await verifyPhoneOtp(otp);
+    if (result.success) {
+        alert("Phone login successful!");
+        otpSection.classList.add("hidden");
+        window.location.href = "/";
+    } else {
+        alert(result.error || "Invalid OTP");
+    }
 };
 
 // ============================
 // GOOGLE LOGIN
 // ============================
-document.getElementById("google-login-btn").onclick = () => {
-  alert("Google login clicked!");
-  // → Replace with actual Google OAuth implementation
+document.getElementById("google-login-btn").onclick = async () => {
+    try {
+        await googleLogin();
+        // Google login handles redirect internally
+    } catch (error) {
+        alert("Google login failed");
+    }
 };
 
 // ============================
 // FORGOT PASSWORD
 // ============================
-const forgotPasswordSection = document.getElementById("forgot-password-section");
-const successMessage = document.getElementById("success-message");
-const errorMessage = document.getElementById("error-message");
-
 document.getElementById("forgot-password-btn").onclick = () => {
-  forgotPasswordSection.classList.toggle("hidden");
-  // Clear messages when toggling
-  successMessage.classList.add("hidden");
-  errorMessage.classList.add("hidden");
+    forgotPasswordSection.classList.toggle("hidden");
+    successMessageEl.classList.add("hidden");
+    errorMessageEl.classList.add("hidden");
 };
 
 document.getElementById("cancel-recovery-btn").onclick = () => {
-  forgotPasswordSection.classList.add("hidden");
-  document.getElementById("recovery-email").value = "";
-  successMessage.classList.add("hidden");
-  errorMessage.classList.add("hidden");
+    forgotPasswordSection.classList.add("hidden");
+    document.getElementById("recovery-email").value = "";
+    successMessageEl.classList.add("hidden");
+    errorMessageEl.classList.add("hidden");
 };
 
 document.getElementById("send-recovery-btn").onclick = async () => {
-  const email = document.getElementById("recovery-email").value;
+    const email = document.getElementById("recovery-email").value;
 
-  // Clear previous messages
-  successMessage.classList.add("hidden");
-  errorMessage.classList.add("hidden");
+    successMessageEl.classList.add("hidden");
+    errorMessageEl.classList.add("hidden");
 
-  if (!email || !email.includes("@")) {
-    errorMessage.textContent = "Please enter a valid email address";
-    errorMessage.classList.remove("hidden");
-    return;
-  }
+    if (!email || !email.includes("@")) {
+        errorMessageEl.textContent = "Please enter a valid email address";
+        errorMessageEl.classList.remove("hidden");
+        return;
+    }
 
-  // Simulate API call
-  try {
-    // → Replace with actual API call
-    successMessage.textContent = "Recovery email sent! Check your inbox.";
-    successMessage.classList.remove("hidden");
-  } catch (error) {
-    errorMessage.textContent = "Failed to send recovery email. Try again.";
-    errorMessage.classList.remove("hidden");
-  }
+    const result = await recoverPassword(email);
+    if (result.success) {
+        successMessageEl.textContent = result.message || "Recovery email sent! Check your inbox.";
+        successMessageEl.classList.remove("hidden");
+        document.getElementById("recovery-email").value = "";
+    } else {
+        errorMessageEl.textContent = result.error || "Failed to send recovery email";
+        errorMessageEl.classList.remove("hidden");
+    }
 };
-
-
-// login logic
-
-import {
-        emailSignup,
-        emailLogin,
-        googleLogin,
-        phoneLogin,
-        verifyPhoneOtp,
-        recoverPassword,
-    } from "../script/login.js";
-
-    let email = "";
-    let password = "";
-    let phoneNumber = "";
-    let otpCode = "";
-    let user = null;
-    let loading = true;
-    let errorMessage = "";
-    let successMessage = "";
-    let showOtpInput = false;
-    let showForgotPassword = false;
-    let recoveryEmail = "";
-    let generatedOTP = null;
-
-    async function handleLogin() {
-        errorMessage = "";
-        alert(`Login with email: ${email} | ${password}`);
-        // const result = await emailLogin(email, password);
-        // if (!result.success) {
-        //     errorMessage = result.error;
-        // }
-    }
-
-    async function handlePhoneLogin() {
-        errorMessage = "";
-        if (!phoneNumber.startsWith("+")) {
-            alert("Phone must be in international format (e.g., +880...)");
-            return;
-        }
-        generatedOTP = Math.floor(100000 + Math.random() * 900000).toString();
-        console.log("OTP:", generatedOTP);
-        showOtpInput = true;
-        alert("OTP sent!");
-    }
-
-    async function handleVerifyOtp() {
-        errorMessage = "";
-        if (otpCode === generatedOTP) {
-            alert("Phone login success!");
-            showOtpInput = false;
-            otpCode = "";
-            phoneNumber = "";
-        } else {
-            alert("Invalid OTP");
-        }
-    }
-
-    async function handleRecoverPassword() {
-        errorMessage = "";
-        successMessage = "";
-        
-        if (!recoveryEmail) {
-            errorMessage = "Please enter your email address";
-            return;
-        }
-
-        const result = await recoverPassword(recoveryEmail);
-        if (result.success) {
-            successMessage = result.message || "Recovery email sent! Check your inbox.";
-            recoveryEmail = "";
-        } else {
-            errorMessage = result.error || "Failed to send recovery email";
-        }
-    }
-
-    function toggleForgotPassword() {
-        showForgotPassword = !showForgotPassword;
-        errorMessage = "";
-        successMessage = "";
-    }
