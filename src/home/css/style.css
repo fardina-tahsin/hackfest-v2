@@ -1,0 +1,53 @@
+:root{
+  --accent:#2c7a7b;
+  --accent-2:#f6ad55;
+  --bg:#0f1720;
+  --card:#0b1220;
+  --muted:#a0aec0;
+  --radius:14px;
+  font-family: "Segoe UI", Roboto, system-ui, -apple-system, "Noto Sans Bengali", sans-serif;
+  color-scheme: dark;
+}
+
+html,body{height:100%;margin:0;background:linear-gradient(180deg,#071028 0%, #071821 100%); color:#fff}
+.container{max-width:920px;margin:0 auto;padding:18px;}
+header{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{width:48px;height:48px;border-radius:10px;background:linear-gradient(90deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;font-weight:700}
+h1{font-size:20px;margin:0}
+.lang-toggle button{background:transparent;border:1px solid rgba(255,255,255,0.08);padding:8px;border-radius:8px;color:var(--muted);font-weight:600}
+
+/* Hero */
+.hero{margin-top:18px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:18px;display:grid;gap:12px}
+.hero-grid{display:grid;grid-template-columns:1fr;gap:12px;align-items:center}
+.pitch{font-size:16px;line-height:1.4}
+.cta-row{display:flex;gap:10px;flex-wrap:wrap}
+.btn{background:var(--accent);border:none;padding:14px;border-radius:12px;font-weight:700;min-width:120px}
+.btn-lite{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:12px;border-radius:12px;color:var(--muted)}
+
+.flow{display:flex;gap:8px;align-items:center;overflow-x:auto;padding:8px 2px}
+.flow-step{min-width:160px;background:rgba(255,255,255,0.02);padding:12px;border-radius:12px;text-align:center; box-shadow: 0 4px 18px rgba(0,0,0,0.6);}
+.flow-step .emoji{font-size:24px}
+.small{font-size:13px;color:var(--muted)}
+
+.card{background:var(--card);padding:14px;border-radius:12px}
+label{display:block;font-size:12px;margin-bottom:6px}
+input,select{width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.farm-list{display:flex;flex-direction:column;gap:10px}
+.farm-item{background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));padding:12px;border-radius:10px;display:flex;justify-content:space-between;align-items:center}
+.badge{padding:6px 8px;border-radius:999px;background:rgba(255,255,255,0.03);font-weight:700}
+
+footer{margin-top:20px;text-align:center;color:var(--muted);font-size:13px}
+
+/* big buttons for dashboard */
+.big-btn{display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);min-width:120px}
+
+/* responsive */
+@media(min-width:720px){
+  .hero-grid{grid-template-columns:1fr 420px}
+}
+
+/* animation */
+.pulse{animation:pulse 2.6s infinite}
+@keyframes pulse{0%{transform:translateY(0)}50%{transform:translateY(-6px)}100%{transform:translateY(0)}}

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<title>HarvestGuard — Prehack Demo</title>
+
+<!-- BcryptJS CDN for hashing -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bcryptjs/2.4.3/bcrypt.min.js"></script>
+
+<!-- CSS -->
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="brand">
+      <div class="logo">HG</div>
+      <div>
+        <h1 id="appTitle">HarvestGuard</h1>
+        <div class="small" id="appTag">Data → Warning → Action → Saved Food</div>
+      </div>
+    </div>
+    <div class="lang-toggle">
+      <button id="toggleLang">বাংলা</button>
+    </div>
+  </header>
+
+  <!-- Hero + Landing -->
+  <section class="hero card" aria-labelledby="heroTitle">
+    <div class="hero-grid">
+      <div>
+        <h2 id="heroTitle">Protect Harvests. Save Food. Secure Income.</h2>
+        <p class="pitch" id="pitch">
+          Bangladesh loses millions of tonnes of staple food each year due to poor storage, handling & transit. HarvestGuard helps farmers monitor batches, get early warnings, and take simple actions that reduce loss.
+        </p>
+
+        <div class="flow" aria-hidden="true">
+          <div class="flow-step pulse" title="Data"><div class="emoji">📡</div><div class="small">Data</div><div class="small">(Weight, Temp, Location)</div></div>
+          <div class="flow-step pulse" title="Warning"><div class="emoji">⚠️</div><div class="small">Warning</div><div class="small">(Moisture risk, Spoilage)</div></div>
+          <div class="flow-step pulse" title="Action"><div class="emoji">🛠️</div><div class="small">Action</div><div class="small">(Dry, Move, Treat)</div></div>
+          <div class="flow-step pulse" title="Saved"><div class="emoji">🌾</div><div class="small">Saved Food</div><div class="small">(Income preserved)</div></div>
+        </div>
+
+        <div class="cta-row" style="margin-top:10px;">
+          <button class="btn" id="getStartedBtn">Get Started</button>
+          <button class="btn-lite" id="learnMoreBtn">Learn More</button>
+          <button class="btn-lite" id="demoExportBtn">Export Data</button>
+        </div>
+
+        <div style="margin-top:12px" class="small" id="impactStat"></div>
+      </div>
+
+      <!-- Quick Register -->
+      <aside class="card" aria-label="Quick Onboarding">
+        <div style="display:flex;gap:10px;align-items:center;justify-content:space-between">
+          <div>
+            <strong id="quickTitle">Quick Register</strong>
+            <div class="small" id="quickSub">You can register fast.</div>
+          </div>
+          <div class="badge" id="langBadge">EN</div>
+        </div>
+
+        <form id="registerForm" style="margin-top:12px">
+          <label for="rname" id="labelName">Name</label>
+          <input id="rname" placeholder="Farmer Name" required />
+
+          <label for="rphone" id="labelPhone">Phone</label>
+          <input id="rphone" placeholder="+8801XXXXXXXXX" required />
+
+          <label for="remail" id="labelEmail">Email</label>
+          <input id="remail" placeholder="you@farm.com" />
+
+          <label for="rpass" id="labelPass">Password</label>
+          <input id="rpass" placeholder="Choose a secure password" type="password" required />
+
+          <div style="display:flex;gap:8px;margin-top:10px;">
+            <select id="prefLang" aria-label="Preferred language">
+              <option value="en">English</option>
+              <option value="bn">বাংলা</option>
+            </select>
+
+            <button class="btn" type="submit" style="flex:1">Register</button>
+ 
+
+
+          </div>
+        </form>
+        <div id="registerMsg" class="small" style="margin-top:8px;color:var(--accent-2)"></div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Dashboard -->
+  <section id="dashboard" style="margin-top:14px;display:none"></section>
+
+  <footer>
+    <div class="small">Demo pre-hack deliverable — HarvestGuard (offline-first)</div>
+  </footer>
+</div>
+
+<!-- JS -->
+<script src="js/main.js"></script>
+<script src="js/user.js"></script>
+<script src="js/batch.js"></script>
+<script src="js/achievements.js"></script>
+<script src="js/sync.js"></script>
+</body>
+</html>
